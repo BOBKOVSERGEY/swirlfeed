@@ -11,6 +11,7 @@ $error_array = [];// Ошибки
 if (isset($_POST['register_button'])) {
 // значения формы
 // имя
+
 $fname = strip_tags($_POST['reg_fname']); // html теги
 //$fname = str_replace(' ', '', $fname); // удаляем пробелы
 $fname = trim($fname); // удаляем пробелы
@@ -43,6 +44,11 @@ if ($em == $em2) {
 // промеряем email
 if (filter_var($em, FILTER_VALIDATE_EMAIL)) {
 $em = filter_var($em, FILTER_VALIDATE_EMAIL);
+
+// экранируем данные
+  $fname = mysqli_real_escape_string($con, $fname);
+  $lname = mysqli_real_escape_string($con, $lname);
+  $em = mysqli_real_escape_string($con, $em);
 
 // Проверяем, если email уже существует
 $e_check = mysqli_query($con, "SELECT email FROM users
@@ -84,6 +90,8 @@ array_push($error_array, "Ваш пароль должен быть между 5
 
 // если ошибок нет
 if(empty($error_array)) {
+
+
 $password = md5($password); //Encrypt password before sending to database
 
 //Generate username by concatenating first name and last name
@@ -107,6 +115,11 @@ $profile_pic = "assets/images/profile_pics/defaults/head_deep_blue.png";
 else if($rand == 2)
 $profile_pic = "assets/images/profile_pics/defaults/head_emerald.png";
 
+
+
+
+
+
 $sql = "INSERT INTO users VALUES (null, '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')";
 $result = mysqli_query($con, $sql);
 
@@ -115,7 +128,7 @@ $error = mysqli_error($con);
 print("Ошибка Mysql: " . $error);
 }
 
-array_push($error_array, "<span style='color:lightgreen;'>Вы успешно зарегистрировались</span>");
+array_push($error_array, "Вы успешно зарегистрировались");
 
 // clear session variables
 $_SESSION['reg_fname'] = '';

@@ -1,5 +1,7 @@
 body {
   font-family: 'ComfortaaRegularGoogle';
+  margin-top: 70px;
+  background-color: #F5F8FA;
 }
 .userName {
   font-family: 'ComfortaaBoldGoogle';
@@ -7,4 +9,33 @@ body {
 }
 a:hover {
   text-decoration: none;
+}
+.second {
+  display: none;
+}
+.login__caption {
+  margin-top: 100px;
+  width: 100%;
+  height: 100%;
+}
+.login__bg {
+  background: url("../images/backgrounds/bg-login.jpg") no-repeat top center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+img {
+  max-width: 100%;
+}
+.user-details__block {
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+.user-details__main-img {
+  text-align: center;
+}
+.userName a {
+  color: rgba(255, 255, 255, 0.5);
 }

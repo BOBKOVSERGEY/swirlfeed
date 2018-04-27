@@ -4,6 +4,7 @@ require_once __DIR__ . '/../config/config.php';
 if (isset($_SESSION['username'])) {
   $userLoggedIn = $_SESSION['username'];
 
+  $userLoggedIn = mysqli_real_escape_string($con, $userLoggedIn);
   $sql = "SELECT * FROM users WHERE username='$userLoggedIn'";
   $user_details_query = mysqli_query($con, $sql);
 
@@ -12,6 +13,7 @@ if (isset($_SESSION['username'])) {
     print("Ошибка Mysql: " . $error);
   } else {
     $user = mysqli_fetch_array($user_details_query);
+    //debug($user);
   }
 
 } else {
@@ -33,7 +35,7 @@ if (isset($_SESSION['username'])) {
 </head>
 <body>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <a class="navbar-brand" href="/">Swirlfeed</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,7 +46,7 @@ if (isset($_SESSION['username'])) {
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
       </form>
-      <div class="userName text-primary">
+      <div class="userName">
         <a href="#"><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></a>
       </div>
       <ul class="navbar-nav">
@@ -64,7 +66,7 @@ if (isset($_SESSION['username'])) {
           <a class="nav-link" href="#">Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Exit</a>
+          <a class="nav-link" href="/logout.php">Exit</a>
         </li>
         <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

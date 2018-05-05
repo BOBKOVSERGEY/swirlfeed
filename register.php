@@ -17,12 +17,13 @@ require __DIR__ . '/includes/form_handlers/login_handler.php';
   <link rel="stylesheet" href="/assets/css/style.css">
 
 </head>
-<body class="login__bg">
+<body>
+  <div class="register__bg"></div>
   <div class="login__caption">
     <div class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <h2>Войдите или зарегистрируйтесь ниже!</h2>
+          <h2 class="register__heading mb-3">Войдите или зарегистрируйтесь ниже!</h2>
           <div class="first">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
               <div class="form-group">

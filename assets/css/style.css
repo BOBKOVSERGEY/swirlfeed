@@ -56,6 +56,9 @@ img {
 .user-details__main-img {
   text-align: center;
 }
+.user-details__main-img img{
+  border-radius: 2px;
+}
 .userName a {
   color: rgba(255, 255, 255, 0.5);
 }

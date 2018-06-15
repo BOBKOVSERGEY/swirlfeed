@@ -47,7 +47,7 @@ if (isset($_SESSION['username'])) {
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
       </form>
       <div class="userName">
-        <a href="#"><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></a>
+        <a href="<?php echo stripcslashes($userLoggedIn); ?>"><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></a>
       </div>
       <ul class="navbar-nav">
         <li class="nav-item active">

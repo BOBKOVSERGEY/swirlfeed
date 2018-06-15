@@ -1,8 +1,16 @@
 <?php
 include __DIR__ . '/includes/header.php';
+include __DIR__ . '/includes/classes/User.php';
+include __DIR__ . '/includes/classes/Post.php';
 
 /*Уничтожает все данные сессии*/
 //session_destroy();
+
+if (isset($_POST['post'])) {
+  $post = new Post($con, $userLoggedIn);
+  $post->submitPost($_POST['post_text'], 'none');
+  header("Location: /");
+}
 ?>
 <section class="user-details">
   <div class="container">
@@ -11,10 +19,10 @@ include __DIR__ . '/includes/header.php';
         <div class="card">
           <div class="card-body">
             <div class="user-details__main-img p-3">
-              <a href="#"><img src="<?php echo $user['profile_pic']?>" alt=""></a>
+              <a href="<?php echo stripcslashes($userLoggedIn); ?>"><img src="<?php echo $user['profile_pic']?>" alt=""></a>
             </div>
             <div>
-              <a href="#">
+              <a href="<?php echo stripcslashes($userLoggedIn); ?>">
                 <?php echo $user['first_name'] . " " . $user['last_name'];?>
               </a>
             </div>
@@ -28,7 +36,23 @@ include __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <form class="post_form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+              <div class="form-group">
+                <textarea name="post_text" class="form-control" id="post_text" rows="3" placeholder="Есть что сказать?"></textarea>
+              </div>
+              <button type="submit" name="post" id="post_button" class="btn btn-primary">Сказать</button>
+            </form>
+            <?php
+              $user_obj = new User($con, $userLoggedIn);
+              echo $user_obj->getFirstAndLastName();
 
+              $post = new Post($con, $userLoggedIn);
+              $post->loadPostsFriends();
+            ?>
+          </div>
+        </div>
       </div>
     </div>
   </div>

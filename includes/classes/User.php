@@ -33,7 +33,7 @@ class User
     $username = $this->user['username'];
 
     $username = mysqli_real_escape_string($this->con, $username);
-    
+
     $query = mysqli_query($this->con, "SELECT first_name, last_name FROM users WHERE username='$username'");
     $row = mysqli_fetch_array($query);
     return $row['first_name'] . " " . $row['last_name'];

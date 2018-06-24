@@ -8,13 +8,7 @@ if (isset($_SESSION['username'])) {
   $sql = "SELECT * FROM users WHERE username='$userLoggedIn'";
   $user_details_query = mysqli_query($con, $sql);
 
-  if (!$user_details_query) {
-    $error = mysqli_error($con);
-    print("Ошибка Mysql: " . $error);
-  } else {
-    $user = mysqli_fetch_array($user_details_query);
-    //debug($user);
-  }
+  $user = mysqli_fetch_array($user_details_query);
 
 } else {
   header("Location: /register.php");
@@ -47,7 +41,7 @@ if (isset($_SESSION['username'])) {
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
       </form>
       <div class="userName">
-        <a href="<?php echo stripcslashes($userLoggedIn); ?>"><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></a>
+        <a href="<?php echo stripcslashes($userLoggedIn); ?>"><?php echo stripcslashes($userLoggedIn); ?></a>
       </div>
       <ul class="navbar-nav">
         <li class="nav-item active">

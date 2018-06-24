@@ -7,7 +7,7 @@ include __DIR__ . '/includes/classes/Post.php';
 //session_destroy();
 
 if (isset($_POST['post'])) {
-  $post = new Post($con, $userLoggedIn);
+  $post = new Post($con, stripcslashes($userLoggedIn));
   $post->submitPost($_POST['post_text'], 'none');
   header("Location: /");
 }
@@ -36,7 +36,7 @@ if (isset($_POST['post'])) {
         </div>
       </div>
       <div class="col-md-9">
-        <div class="card">
+        <div class="card mb-3">
           <div class="card-body">
             <form class="post_form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
               <div class="form-group">
@@ -44,14 +44,13 @@ if (isset($_POST['post'])) {
               </div>
               <button type="submit" name="post" id="post_button" class="btn btn-primary">Сказать</button>
             </form>
-            <?php
-              $user_obj = new User($con, $userLoggedIn);
-              echo $user_obj->getFirstAndLastName();
+            <div class="posts_area"></div>
+            <div class="text-center m-3">
+              <i id="#loading" class="fa fa-spinner fa-3x fa-spin"></i>
+            </div>
 
-              $post = new Post($con, $userLoggedIn);
-              $post->loadPostsFriends();
-            ?>
           </div>
+
         </div>
       </div>
     </div>

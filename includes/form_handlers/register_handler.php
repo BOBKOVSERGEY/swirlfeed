@@ -12,31 +12,31 @@ if (isset($_POST['register_button'])) {
 // значения формы
 // имя
 
-$fname = strip_tags($_POST['reg_fname']); // html теги
+$fname = sanitizeString($_POST['reg_fname']); // html теги
 //$fname = str_replace(' ', '', $fname); // удаляем пробелы
 $fname = trim($fname); // удаляем пробелы
-$_SESSION['reg_fname'] = $fname; // сохраняем имя в сессию
+$_SESSION['reg_fname'] = stripcslashes($fname); // сохраняем имя в сессию
 
 // фамилия
-$lname = strip_tags($_POST['reg_lname']); // html теги
+$lname = sanitizeString($_POST['reg_lname']); // html теги
 $lname = trim($lname); // удаляем пробелы
-$_SESSION['reg_lname'] = $lname; // сохраняем фамилию в сессию
+$_SESSION['reg_lname'] = stripcslashes($lname); // сохраняем фамилию в сессию
 
 // email
-$em = strip_tags($_POST['reg_email']); // html теги
+$em = sanitizeString($_POST['reg_email']); // html теги
 $em = trim($em); // удаляем пробелы
 //$em = ucfirst(strtolower($em)); // преообразует в верхний регистр 1 букву
 $_SESSION['reg_email'] = $em; // сохраняем email в сессию
 
 // email2
-$em2 = strip_tags($_POST['reg_email2']); // html теги
+$em2 = sanitizeString($_POST['reg_email2']); // html теги
 $em2 = trim($em2); // удаляем пробелы
 //$em2 = $em2; // преообразует в верхний регистр 1 букву
 $_SESSION['reg_email2'] = $em2; // сохраняем email2 в сессию
 
 // password
-$password = strip_tags($_POST['reg_password']); // html теги
-$password2 = strip_tags($_POST['reg_password2']); // html теги
+$password = sanitizeString($_POST['reg_password']); // html теги
+$password2 = sanitizeString($_POST['reg_password2']); // html теги
 
 $date = date("Y-m-d"); // текущая дата
 
@@ -45,14 +45,9 @@ if ($em == $em2) {
 if (filter_var($em, FILTER_VALIDATE_EMAIL)) {
 $em = filter_var($em, FILTER_VALIDATE_EMAIL);
 
-// экранируем данные
-  $fname = mysqli_real_escape_string($con, $fname);
-  $lname = mysqli_real_escape_string($con, $lname);
-  $em = mysqli_real_escape_string($con, $em);
 
 // Проверяем, если email уже существует
-$e_check = mysqli_query($con, "SELECT email FROM users
-WHERE email='$em'");
+$e_check = mysqli_query($con, "SELECT email FROM users WHERE email='$em'");
 
 // считаем число возврашенных строк
 $num_rows = mysqli_num_rows($e_check);

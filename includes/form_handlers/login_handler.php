@@ -6,7 +6,7 @@ if (isset($_POST['login_button'])) {
   $_SESSION['log_email'] = $email;
 
   $password = md5($_POST['log_password']);
-  $email = mysqli_real_escape_string($con, $email);
+  $email = sanitizeString($email);
 
   $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
   $check_database_query = mysqli_query($con, $sql);

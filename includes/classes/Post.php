@@ -181,7 +181,8 @@ class Post
         $str .= "<input type='hidden' class='nextPage' value='" . ($page + 1) . "'>
 							<input type='hidden' class='noMorePosts' value='false'>";
       else
-        $str .= "<input type='hidden' class='noMorePosts' value='true'><p class='text-center'> No more posts to show! </p>";
+        $str .= "<input type='hidden' class='noMorePosts' value='true'>
+                 <p class='text-center m-3'> No more posts to show! </p>";
 
     }
 

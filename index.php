@@ -46,7 +46,7 @@ if (isset($_POST['post'])) {
             </form>
             <div class="posts_area"></div>
             <div class="text-center m-3">
-              <i id="#loading" class="fa fa-spinner fa-3x fa-spin"></i>
+              <i id="loading" class="fa fa-spinner fa-3x fa-spin"></i>
             </div>
 
           </div>

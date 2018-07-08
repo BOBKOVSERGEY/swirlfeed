@@ -43,12 +43,18 @@ require __DIR__ . '/includes/form_handlers/login_handler.php';
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
               <div class="form-group">
                 <input type="text" class="form-control" name="reg_fname" placeholder="Ваше имя" value="<?php if (isset($_SESSION['reg_fname'])) { echo $_SESSION['reg_fname']; }?>" required>
-                <div class="text-danger"><?php if (in_array("Ваше имя должно быть между 2 и 25 символами<br>", $error_array)) echo "Ваше имя должно быть между 2 и 25 символами<br>"; ?></div>
+                <div class="text-danger">
+                  <?php if (in_array("Ваше имя должно быть между 2 и 25 символами<br>", $error_array)) echo "Ваше имя должно быть между 2 и 25 символами<br>";
+                  else if (in_array("Ваше имя может состоять только из латинских символов или чисел<br>", $error_array)) echo "Ваше имя может состоять только из латинских символов или чисел<br>";
+                  ?>
+                </div>
               </div>
               <div class="form-group">
                 <input type="text" class="form-control" name="reg_lname" placeholder="Ваше фамилия" value="<?php if (isset($_SESSION['reg_lname'])) { echo $_SESSION['reg_lname']; }?>" required>
                 <div class="text-danger">
-                  <?php if (in_array("Ваша фамилия должна быть между 2 и 25 символами<br>", $error_array)) echo "Ваша фамилия должна быть между 2 и 25 символами<br>"; ?>
+                  <?php if (in_array("Ваша фамилия должна быть между 2 и 25 символами<br>", $error_array)) echo "Ваша фамилия должна быть между 2 и 25 символами<br>";
+                  else if (in_array("Ваша фамилия может состоять только из латинских символов или чисел<br>", $error_array)) echo "Ваша фамилия может состоять только из латинских символов или чисел<br>";
+                  ?>
                 </div>
               </div>
               <div class="form-group">

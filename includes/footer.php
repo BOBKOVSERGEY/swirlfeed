@@ -13,6 +13,7 @@ if (isset($_POST['register_button'])) {
 }
 ?>
 <script>
+
   var userLoggedIn = '<?php if(isset($userLoggedIn)) echo $userLoggedIn; ?>';
   $(function () {
     $('#loading').show();
@@ -33,16 +34,22 @@ if (isset($_POST['register_button'])) {
     ajaxRequest();
     $(window).scroll(function () {
       var height = $('.posts_area').height();
-
+      //console.log(height);
       var scroll_top = $(this).scrollTop();
       var innerHeight = window.innerHeight;
-
+      //console.log(scroll_top);
       var page = $('.posts_area').find('.nextPage').val();
       var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+      console.log('scrollTop' + $(window).scrollTop());
+      console.log('height' + $(window).height());
+      console.log('documentheight' + $(document).height());
+      console.log(page);
+      console.log(scroll_top);
 
+      var fullHeight = scroll_top + innerHeight;
       //$(window).scrollTop() + $(window).height() >= $(document).height() - 200
 
-      if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200 && noMorePosts === 'false') {
+      if ($(window).scrollTop() + $(window).height() >= $(document).height() && noMorePosts === 'false') {
 
 
         $('#loading').show();

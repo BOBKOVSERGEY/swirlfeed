@@ -46,7 +46,7 @@ if (isset($_POST['postComment' . $post_id])) {
 
   <form action="<?php echo $_SERVER['PHP_SELF']; ?>?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="post">
     <div class="form-group">
-      <textarea name="post_body" class="form-control" rows="3" placeholder="Введите комментарий"></textarea>
+      <textarea name="post_body" class="form-control" rows="3" placeholder="Введите комментарий" style="width: 100%;margin: 10px 0;padding: 0.375rem 0.75rem;font-size: 1rem;border: 1px solid #ced4da;border-radius: 0.25rem;"></textarea>
     </div>
     <button type="submit" name="postComment<?php echo $post_id; ?>"  class="btn btn-primary">Комментировать</button>
   </form>

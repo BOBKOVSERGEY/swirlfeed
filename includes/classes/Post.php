@@ -197,7 +197,7 @@ class Post
                       </div>
                     </div>
                     <div class='post_comment' id='toggleComment" . $id . "' style='display: none;'>
-                      <iframe src='comment_frame.php?post_id=" . $id . "' frameborder='0' id='comment_frame'></iframe>
+                      <iframe src='comment_frame.php?post_id=" . $id . "' frameborder='0' id='comment_frame' class='frameComment'></iframe>
                     </div>
                  </div>";
 

@@ -36,7 +36,7 @@ require __DIR__ . '/includes/form_handlers/login_handler.php';
                 <?php if(in_array("Email или пароль некорректны<br>", $error_array)) echo "Email или пароль некорректны<br>"; ?>
               </div>
               <button type="submit" class="btn btn-primary" name="login_button">Войти</button>
-              <div class="mt-3"><a href="#" id="signUp" class="signUp">Нужен аккаунт? Зарегистрируйтесь здесь!</a></div>
+              <div class="mt-3"><a href="#" id="signUp" class="signUp text-white">Нужен аккаунт? Зарегистрируйтесь здесь!</a></div>
             </form>
           </div>
           <div class="second mt-3">
@@ -83,7 +83,7 @@ require __DIR__ . '/includes/form_handlers/login_handler.php';
               <div class="mb-3 mt-3 text-success">
                 <?php if (in_array("Вы успешно зарегистрировались", $error_array)) echo "Вы успешно зарегистрировались";?>
               </div>
-              <a href="#" id="signIn" class="signIn">Уже есть аккаунт? Войдите здесь!</a>
+              <a href="#" id="signIn" class="signIn text-white">Уже есть аккаунт? Войдите здесь!</a>
             </form>
           </div>
         </div>

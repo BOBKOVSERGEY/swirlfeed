@@ -31,10 +31,15 @@ if (isset($_POST['postComment' . $post_id])) {
   $post_body = $_POST['post_body'];
   $post_body = sanitizeString($post_body);
   $date_time_now = date("Y-m-d H:i:s");
+  if ($post_body) {
+    $insert_post = mysqli_query($con, "INSERT INTO comments VALUES (null, '$post_body', '$userLoggedIn', '$posted_to', '$date_time_now', 'no', '$post_id')");
+    echo "<p>Комментарий добавлен!</p>";
+  } else {
+    echo "<p>Введите что нибудь!</p>";
+  }
 
-  $insert_post = mysqli_query($con, "INSERT INTO comments VALUES (null, '$post_body', '$userLoggedIn', '$posted_to', '$date_time_now', 'no', '$post_id')");
 
-  echo "<p>Комментарий добавлен!</p>";
+
 }
 
 ?>
@@ -52,7 +57,7 @@ $count = mysqli_num_rows($get_comments);
 
 if ($count != 0) {
   while ($comment = mysqli_fetch_assoc($get_comments)) {
-    debug($comment);
+    //debug($comment);
     $comment_body = $comment['post_body'];
     $posted_to = $comment['posted_to'];
     $posted_by = $comment['posted_by'];
@@ -114,11 +119,25 @@ if ($count != 0) {
 
     $user_obj = new User($con, $posted_by);
 
+    ?>
+
+    <div class="comment_section">
+      <div style="display: flex; align-items: center; margin-bottom: 10px">
+        <a href="<?php if (!empty($posted_by)) { echo $posted_by; } ?>" target="_parent" style="text-decoration: none; margin-right: 10px;"><img src="<?php echo $user_obj->getProfilePic(); ?>" title="" alt="" style="width: 30px; border-radius: 50%;"></a>
+        <a href="<?php if (!empty($posted_by)) { echo $posted_by; } ?>" target="_parent" style="text-decoration: none; margin-right: 10px;"><?php echo $user_obj->getFirstAndLastName(); ?></a>
+        <p><?php echo $time_message; ?></p>
+      </div>
+      <div>
+        <?php echo $comment_body?>
+      </div>
+
+    </div>
+
+   <?php
+
   }
 }
 ?>
 
-<div class="comment_section">
-  <a href="<?php echo $posted_by?>" target="_parent"><?php echo $posted_by?></a>
-</div>
+
 

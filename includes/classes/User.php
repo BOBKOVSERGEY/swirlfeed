@@ -39,6 +39,15 @@ class User
     return $row['first_name'] . " " . $row['last_name'];
   }
 
+  public function getProfilePic()
+  {
+    $username = $this->user['username'];
+    $username = mysqli_real_escape_string($this->con, $username);
+    $query = mysqli_query($this->con, "SELECT profile_pic FROM users WHERE username='$username'");
+    $row = mysqli_fetch_assoc($query);
+    return $row['profile_pic'];
+  }
+
   public function isClosed()
   {
     $username = $this->user['username'];

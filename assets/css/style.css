@@ -67,9 +67,19 @@ img {
 }
 .frameComment {
   width: 100%;
-  min-height: 200px;
+  max-height: 250px;
+  font-family: 'ComfortaaRegularGoogle';
+}
+#comment_form textarea {
+  font-size: 13px;
 }
 
+.wrapper-iframe {
+  margin-top: 0;
+  background: #fff;
+  font-size: 13px;
+  padding: 15px 15px 15px 0;
+}
 
 
 

@@ -4,6 +4,15 @@ require_once __DIR__ . '/config/config.php';
 include __DIR__ . '/includes/classes/User.php';
 include __DIR__ . '/includes/classes/Post.php';
 ?>
+<!doctype html>
+<head>
+  <link rel="stylesheet" href="/assets/css/bootstrap.css">
+  <link rel="stylesheet" href="/assets/css/fontAweasome.css">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="wrapper-iframe">
+
 <?php
 if (isset($_SESSION['username'])) {
   $userLoggedIn = $_SESSION['username'];
@@ -43,16 +52,15 @@ if (isset($_POST['postComment' . $post_id])) {
 }
 
 ?>
-
-  <form action="<?php echo $_SERVER['PHP_SELF']; ?>?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="post">
-    <div class="form-group">
-      <textarea name="post_body" class="form-control" rows="3" placeholder="Введите комментарий" style="width: 100%;margin: 10px 0;padding: 0.375rem 0.75rem;font-size: 1rem;border: 1px solid #ced4da;border-radius: 0.25rem;"></textarea>
-    </div>
-    <button type="submit" name="postComment<?php echo $post_id; ?>"  class="btn btn-primary">Комментировать</button>
-  </form>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="post">
+  <div class="form-group mb-3">
+    <textarea name="post_body" class="form-control" rows="3" placeholder="Введите комментарий"></textarea>
+  </div>
+  <button type="submit" name="postComment<?php echo $post_id; ?>"  class="btn btn-info btn-sm">Комментировать</button>
+</form>
 
 <?php
-$get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id = '$post_id' ORDER BY id ASC");
+$get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id = '$post_id' ORDER BY id DESC");
 $count = mysqli_num_rows($get_comments);
 
 if ($count != 0) {
@@ -122,22 +130,25 @@ if ($count != 0) {
     ?>
 
     <div class="comment_section">
-      <div style="display: flex; align-items: center; margin-bottom: 10px">
+      <div class="d-flex mt-3 align-items-center">
         <a href="<?php if (!empty($posted_by)) { echo $posted_by; } ?>" target="_parent" style="text-decoration: none; margin-right: 10px;"><img src="<?php echo $user_obj->getProfilePic(); ?>" title="" alt="" style="width: 30px; border-radius: 50%;"></a>
         <a href="<?php if (!empty($posted_by)) { echo $posted_by; } ?>" target="_parent" style="text-decoration: none; margin-right: 10px;"><?php echo $user_obj->getFirstAndLastName(); ?></a>
-        <p><?php echo $time_message; ?></p>
+        <span><?php echo $time_message; ?></span>
       </div>
-      <div>
+      <div class="mb-3">
         <?php echo $comment_body?>
       </div>
 
     </div>
 
-   <?php
+    <?php
 
   }
 }
 ?>
+</body>
+</html>
+
 
 
 

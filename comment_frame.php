@@ -54,7 +54,7 @@ if (isset($_POST['postComment' . $post_id])) {
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>?post_id=<?php echo $post_id; ?>" id="comment_form" name="postComment<?php echo $post_id; ?>" method="post">
   <div class="form-group mb-3">
-    <textarea name="post_body" class="form-control" rows="3" placeholder="Введите комментарий"></textarea>
+    <textarea name="post_body" class="form-control" rows="2" placeholder="Введите комментарий"></textarea>
   </div>
   <button type="submit" name="postComment<?php echo $post_id; ?>"  class="btn btn-info btn-sm">Комментировать</button>
 </form>
@@ -144,6 +144,8 @@ if ($count != 0) {
     <?php
 
   }
+} else {
+  echo "<p class='text-center m-2'>No comments to Show!</p>";
 }
 ?>
 </body>

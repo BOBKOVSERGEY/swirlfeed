@@ -128,6 +128,9 @@ class Post
           </script>
           <?php
 
+          $comments_check = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='{$id}'");
+          $comments_check_num = mysqli_num_rows($comments_check);
+
           //Timeframe
 
           $date_time_now = date("Y-m-d H:i:s");
@@ -193,7 +196,11 @@ class Post
                         <div class='posted_by'>
                           <a href='" . str_replace('\'', '', stripcslashes($added_by)) . "'>$first_name $last_name</a> $user_to &nbsp; $time_message
                         </div>
-                        <div id='$id'>$body</div>
+                        <div id='$id' class='mt-2 mb-2'>$body</div>
+                        <div class='newsfeedPostOption'>
+                          Comments <span class='badge badge-secondary'>{$comments_check_num}</span>
+                          <iframe src='like.php?post_id={$id}' frameborder='0'></iframe>
+                        </div>
                       </div>
                     </div>
                     <div class='post_comment' id='toggleComment" . $id . "' style='display: none;'>

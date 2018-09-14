@@ -94,7 +94,13 @@ img {
 .status_post:hover {
   cursor: pointer;
 }
-
+.wrapper-iframe-like {
+  font-family: 'ComfortaaRegularGoogle';
+  margin-top: 0;
+  background: #fff;
+  font-size: 13px;
+  padding: 15px 15px 15px 0;
+}
 
 
 @media only screen and (max-width : 480px) {

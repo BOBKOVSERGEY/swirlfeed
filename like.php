@@ -10,7 +10,7 @@ require_once __DIR__ . '/config/config.php';
   <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
+<body class="wrapper-iframe-like">
 <?php
 if (isset($_SESSION['username'])) {
   $userLoggedIn = $_SESSION['username'];
@@ -39,8 +39,31 @@ $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='{$
 
 $row = mysqli_fetch_array($user_details_query);
 
+$total_user_likes = $row['num_likes'];
+
+// like button
+if (isset($_POST['like_button'])) {
+  $total_likes++;
+  $total_user_likes++;
+  $query = mysqli_query($con, "UPDATE posts SET likes='$total_likes' WHERE id='$post_id'");
+  $user_likes = mysqli_query($con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
+  $insert_user = mysqli_query($con, "INSERT INTO likes (username, post_id) VALUES('$userLoggedIn', '$post_id')");
+}
+
+// unlike button
+if (isset($_POST['unlike_button'])) {
+  $total_likes--;
+  $total_user_likes--;
+  $query = mysqli_query($con, "UPDATE posts SET likes='$total_likes' WHERE id='$post_id'");
+  $user_likes = mysqli_query($con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
+  $insert_user = mysqli_query($con, "DELETE FROM likes WHERE username='$userLoggedIn' AND post_id='$post_id'");
+}
+
+
 $check_query = mysqli_query($con, "SELECT * FROM likes WHERE username='{$userLoggedIn}' AND post_id='{$post_id}'");
 $num_rows = mysqli_num_rows($check_query);
+
+
 
 if ($num_rows > 0) {
   echo '<form action="like.php?post_id=' . $post_id . '" method="post">

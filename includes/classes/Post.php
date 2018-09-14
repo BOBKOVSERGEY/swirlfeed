@@ -115,15 +115,14 @@ class Post
           <script>
             function toggle<?php echo $id; ?>() {
 
-              var target = $(event.target);
-              if (!target.is("a")) {
+
                 var element = document.getElementById("toggleComment<?php echo $id; ?>");
 
                 if(element.style.display == "block")
                   element.style.display = "none";
                 else
                   element.style.display = "block";
-              }
+
             }
           </script>
           <?php
@@ -199,7 +198,7 @@ class Post
                         <div id='$id' class='mt-2 mb-2'>$body</div>
                         <div class='newsfeedPostOption'>
                           Comments <span class='badge badge-secondary'>{$comments_check_num}</span>
-                          <iframe src='like.php?post_id={$id}' frameborder='0'></iframe>
+                          <iframe src='like.php?post_id={$id}' frameborder='0' class='iframeLike'></iframe>
                         </div>
                       </div>
                     </div>

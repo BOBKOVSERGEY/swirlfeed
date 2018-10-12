@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 27 2018 г., 20:29
--- Версия сервера: 5.7.16
--- Версия PHP: 7.0.14
+-- Время создания: Окт 12 2018 г., 15:54
+-- Версия сервера: 5.7.20
+-- Версия PHP: 7.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -62,6 +64,16 @@ CREATE TABLE `likes` (
   `post_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `likes`
+--
+
+INSERT INTO `likes` (`id`, `username`, `post_id`) VALUES
+(4, 'Sergey_Bobkov', 107),
+(5, 'Sergey_Bobkov', 99),
+(6, 'Sergey_Bobkov', 109),
+(7, 'Sergey_Bobkov', 108);
+
 -- --------------------------------------------------------
 
 --
@@ -97,11 +109,12 @@ INSERT INTO `posts` (`id`, `body`, `added_by`, `user_to`, `date_added`, `user_cl
 (75, 'llllllllllll', 'Kira_Taran', 'none', '2018-06-24 19:27:26', 'no', 'no', 0),
 (76, 'ccccccccccccccccccc', 'Kira_Taran', 'none', '2018-06-24 19:27:38', 'no', 'no', 0),
 (91, 'ggggggggggg', 'Kira_Taran', 'none', '2018-06-24 20:07:55', 'no', 'no', 0),
-(99, 'eeeeeeeeeeee', 'Kira_Taran', 'none', '2018-06-24 20:29:57', 'no', 'no', 0),
+(99, 'eeeeeeeeeeee', 'Kira_Taran', 'none', '2018-06-24 20:29:57', 'no', 'no', 1),
 (103, 'ыыыыыыыыыыыыыыыы', 'mickey_mouse', 'none', '2018-07-08 12:55:41', 'no', 'no', 0),
 (104, 'вася', 'mickey_mouse', 'none', '2018-07-08 12:55:49', 'no', 'no', 0),
-(107, 'Всем привет', 'Sergey_Bobkov', 'none', '2018-07-22 20:52:01', 'no', 'no', 0),
-(108, 'ааааааааааааа', 'Kira_Taran', 'none', '2018-07-22 22:06:51', 'no', 'no', 0);
+(107, 'Всем привет', 'Sergey_Bobkov', 'none', '2018-07-22 20:52:01', 'no', 'no', 1),
+(108, 'ааааааааааааа', 'Kira_Taran', 'none', '2018-07-22 22:06:51', 'no', 'no', 1),
+(109, 'Что то', 'Kira_Taran', 'none', '2018-09-07 15:27:40', 'no', 'no', 1);
 
 -- --------------------------------------------------------
 
@@ -129,9 +142,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `singup_date`, `profile_pic`, `num_posts`, `num_likes`, `user_closed`, `friend_array`) VALUES
-(4, 'Kira', 'Taran', 'Kira_Taran', 'taran.kira@rambler.ru', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_emerald.png', 11, 0, 'no', ',mickey_mouse,Sergey_Bobkov,'),
+(4, 'Kira', 'Taran', 'Kira_Taran', 'taran.kira@rambler.ru', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_emerald.png', 12, 3, 'no', ',mickey_mouse,Sergey_Bobkov,'),
 (5, 'mickey', 'mouse', 'mickey_mouse', 'mickey@mail.com', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_deep_blue.png', 2, 0, 'no', ',Kira_Taran,'),
-(21, 'Sergey', 'Bobkov', 'Sergey_Bobkov', 'sergey_bobkov@inbox.ru', 'e98154b6878043f5175ff12874410c73', '2018-07-22', 'assets/images/profile_pics/defaults/head_deep_blue.png', 1, 0, 'no', ',Kira_Taran,');
+(21, 'Sergey', 'Bobkov', 'Sergey_Bobkov', 'sergey_bobkov@inbox.ru', 'e98154b6878043f5175ff12874410c73', '2018-07-22', 'assets/images/profile_pics/defaults/head_deep_blue.png', 1, 1, 'no', ',Kira_Taran,');
 
 --
 -- Индексы сохранённых таблиц
@@ -170,21 +183,26 @@ ALTER TABLE `users`
 --
 ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
 --
 -- AUTO_INCREMENT для таблицы `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

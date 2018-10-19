@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 12 2018 г., 15:54
+-- Время создания: Окт 19 2018 г., 15:00
 -- Версия сервера: 5.7.20
 -- Версия PHP: 7.0.26
 
@@ -55,6 +55,25 @@ INSERT INTO `comments` (`id`, `post_body`, `posted_by`, `posted_to`, `date_added
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `friend_request`
+--
+
+CREATE TABLE `friend_request` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_to` varchar(50) NOT NULL,
+  `user_from` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `friend_request`
+--
+
+INSERT INTO `friend_request` (`id`, `user_to`, `user_from`) VALUES
+(2, 'mickey_mouse', 'Kira_Taran');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `likes`
 --
 
@@ -72,7 +91,9 @@ INSERT INTO `likes` (`id`, `username`, `post_id`) VALUES
 (4, 'Sergey_Bobkov', 107),
 (5, 'Sergey_Bobkov', 99),
 (6, 'Sergey_Bobkov', 109),
-(7, 'Sergey_Bobkov', 108);
+(7, 'Sergey_Bobkov', 108),
+(8, 'Kira_Taran', 114),
+(9, 'Sergey_Bobkov', 114);
 
 -- --------------------------------------------------------
 
@@ -109,12 +130,17 @@ INSERT INTO `posts` (`id`, `body`, `added_by`, `user_to`, `date_added`, `user_cl
 (75, 'llllllllllll', 'Kira_Taran', 'none', '2018-06-24 19:27:26', 'no', 'no', 0),
 (76, 'ccccccccccccccccccc', 'Kira_Taran', 'none', '2018-06-24 19:27:38', 'no', 'no', 0),
 (91, 'ggggggggggg', 'Kira_Taran', 'none', '2018-06-24 20:07:55', 'no', 'no', 0),
-(99, 'eeeeeeeeeeee', 'Kira_Taran', 'none', '2018-06-24 20:29:57', 'no', 'no', 1),
-(103, 'ыыыыыыыыыыыыыыыы', 'mickey_mouse', 'none', '2018-07-08 12:55:41', 'no', 'no', 0),
+(99, 'eeeeeeeeeeee', 'Kira_Taran', 'none', '2018-06-24 20:29:57', 'no', 'no', 2),
+(103, 'ыыыыыыыыыыыыыыыы', 'mickey_mouse', 'none', '2018-07-08 12:55:41', 'no', 'no', 1),
 (104, 'вася', 'mickey_mouse', 'none', '2018-07-08 12:55:49', 'no', 'no', 0),
 (107, 'Всем привет', 'Sergey_Bobkov', 'none', '2018-07-22 20:52:01', 'no', 'no', 1),
 (108, 'ааааааааааааа', 'Kira_Taran', 'none', '2018-07-22 22:06:51', 'no', 'no', 1),
-(109, 'Что то', 'Kira_Taran', 'none', '2018-09-07 15:27:40', 'no', 'no', 1);
+(109, 'Что то', 'Kira_Taran', 'none', '2018-09-07 15:27:40', 'no', 'no', 1),
+(110, 'some', 'Kira_Taran', 'none', '2018-10-19 12:39:07', 'no', 'no', 0),
+(111, 'some', 'Kira_Taran', 'none', '2018-10-19 12:39:23', 'no', 'no', 0),
+(112, 'some', 'Kira_Taran', 'none', '2018-10-19 12:39:32', 'no', 'no', 0),
+(113, 'some', 'Kira_Taran', 'none', '2018-10-19 12:39:40', 'no', 'no', 0),
+(114, 'some one', 'Kira_Taran', 'none', '2018-10-19 12:40:27', 'no', 'no', 2);
 
 -- --------------------------------------------------------
 
@@ -142,8 +168,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `singup_date`, `profile_pic`, `num_posts`, `num_likes`, `user_closed`, `friend_array`) VALUES
-(4, 'Kira', 'Taran', 'Kira_Taran', 'taran.kira@rambler.ru', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_emerald.png', 12, 3, 'no', ',mickey_mouse,Sergey_Bobkov,'),
-(5, 'mickey', 'mouse', 'mickey_mouse', 'mickey@mail.com', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_deep_blue.png', 2, 0, 'no', ',Kira_Taran,'),
+(4, 'Kira', 'Taran', 'Kira_Taran', 'taran.kira@rambler.ru', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_emerald.png', 17, 6, 'no', ',Sergey_Bobkov,'),
+(5, 'mickey', 'mouse', 'mickey_mouse', 'mickey@mail.com', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_deep_blue.png', 2, 1, 'no', ','),
 (21, 'Sergey', 'Bobkov', 'Sergey_Bobkov', 'sergey_bobkov@inbox.ru', 'e98154b6878043f5175ff12874410c73', '2018-07-22', 'assets/images/profile_pics/defaults/head_deep_blue.png', 1, 1, 'no', ',Kira_Taran,');
 
 --
@@ -154,6 +180,12 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `pass
 -- Индексы таблицы `comments`
 --
 ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `friend_request`
+--
+ALTER TABLE `friend_request`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -185,16 +217,22 @@ ALTER TABLE `comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT для таблицы `friend_request`
+--
+ALTER TABLE `friend_request`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT для таблицы `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

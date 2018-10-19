@@ -48,8 +48,9 @@ if (isset($_POST['register_button'])) {
 
       var fullHeight = scroll_top + innerHeight;
       //$(window).scrollTop() + $(window).height() >= $(document).height() - 200
+      //$(window).scrollTop() + $(window).height() >= $(document).height() && noMorePosts === 'false'
 
-      if ($(window).scrollTop() + $(window).height() >= $(document).height() && noMorePosts === 'false') {
+      if ($(window).scrollTop() + $(window).height() >= ($(document).height() - 200) && noMorePosts === 'false') {
 
 
         $('#loading').show();

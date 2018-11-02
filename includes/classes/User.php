@@ -47,6 +47,14 @@ class User
     $row = mysqli_fetch_assoc($query);
     return $row['profile_pic'];
   }
+  public function getFriendArray()
+  {
+    $username = $this->user['username'];
+    $username = mysqli_real_escape_string($this->con, $username);
+    $query = mysqli_query($this->con, "SELECT friend_array FROM users WHERE username='$username'");
+    $row = mysqli_fetch_assoc($query);
+    return $row['friend_array'];
+  }
 
   public function isClosed()
   {

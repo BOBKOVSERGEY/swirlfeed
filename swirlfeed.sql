@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 19 2018 г., 15:00
+-- Время создания: Ноя 02 2018 г., 16:28
 -- Версия сервера: 5.7.20
 -- Версия PHP: 7.0.26
 
@@ -63,13 +63,6 @@ CREATE TABLE `friend_request` (
   `user_to` varchar(50) NOT NULL,
   `user_from` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `friend_request`
---
-
-INSERT INTO `friend_request` (`id`, `user_to`, `user_from`) VALUES
-(2, 'mickey_mouse', 'Kira_Taran');
 
 -- --------------------------------------------------------
 
@@ -170,7 +163,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `email`, `password`, `singup_date`, `profile_pic`, `num_posts`, `num_likes`, `user_closed`, `friend_array`) VALUES
 (4, 'Kira', 'Taran', 'Kira_Taran', 'taran.kira@rambler.ru', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_emerald.png', 17, 6, 'no', ',Sergey_Bobkov,'),
 (5, 'mickey', 'mouse', 'mickey_mouse', 'mickey@mail.com', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-17', 'assets/images/profile_pics/defaults/head_deep_blue.png', 2, 1, 'no', ','),
-(21, 'Sergey', 'Bobkov', 'Sergey_Bobkov', 'sergey_bobkov@inbox.ru', 'e98154b6878043f5175ff12874410c73', '2018-07-22', 'assets/images/profile_pics/defaults/head_deep_blue.png', 1, 1, 'no', ',Kira_Taran,');
+(21, 'Sergey', 'Bobkov', 'Sergey_Bobkov', 'sergey_bobkov@inbox.ru', 'e98154b6878043f5175ff12874410c73', '2018-07-22', 'assets/images/profile_pics/defaults/head_deep_blue.png', 3, 1, 'no', ',mickey_mouse,Kira_Taran,');
 
 --
 -- Индексы сохранённых таблиц
@@ -220,7 +213,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT для таблицы `friend_request`
 --
 ALTER TABLE `friend_request`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `likes`

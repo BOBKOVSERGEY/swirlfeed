@@ -103,6 +103,11 @@ class Post
             $count++;
           }
 
+          if ($userLoggedIn == $added_by)
+            $delete_button = '<button class="btn btn-danger" style="float: right" id="post' . $id . '">&times;</button>';
+          else
+            $delete_button = '';
+
           $user_details_query = mysqli_query($this->con, "SELECT first_name, last_name, profile_pic FROM users WHERE username='$added_by'");
 
           $user_row = mysqli_fetch_array($user_details_query);
@@ -194,6 +199,7 @@ class Post
                       <div class='col-md-10'>
                         <div class='posted_by'>
                           <a href='" . str_replace('\'', '', stripcslashes($added_by)) . "'>$first_name $last_name</a> $user_to &nbsp; $time_message
+                          $delete_button
                         </div>
                         <div id='$id' class='mt-2 mb-2'>$body</div>
                         <div class='newsfeedPostOption'>
@@ -208,6 +214,19 @@ class Post
                  </div>";
 
         }
+        
+        ?>
+        <script>
+          $(function () {
+            $('#post<?php echo $id;?>').on('click', function () {
+              bootbox.confirm('Are you sure want to delete this post?', function (result) {
+                $.post('/includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>', {result:result});
+                if (result) location.reload();
+              });
+            })
+          })
+        </script>
+        <?php
 
 
       } //end while
